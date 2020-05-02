@@ -56,6 +56,7 @@ RUN apt-get update \
 COPY php.ini /etc/php/7.4/fpm/php.ini
 COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY ./script.sh /
 
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/scheduler
@@ -69,5 +70,5 @@ RUN crontab /etc/cron.d/scheduler
 # Expone el puerto 9000 para la comunicación entre contenedores
 EXPOSE 9000
 
-# Ejecuta el comando php-fpm7.2
-CMD ["cron -f & php-fpm7.4"]
+# Ejecuta el comando
+CMD ["sh","/script.sh"]
