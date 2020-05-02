@@ -48,7 +48,7 @@ services:
     build: ./crontab
     volumes:
       - ${CRONTAB_LOG_PATH}:/var/log/
-      - ${CRONTAB_PATH}:/etc/cron.d/
+      - ${CRONTAB_PATH}:/etc/
     networks:
       - backend
 

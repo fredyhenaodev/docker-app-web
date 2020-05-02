@@ -3,10 +3,10 @@ FROM ubuntu:latest
 LABEL maintainer="Fredy Henao <fredyhenao45y@gmail.com>"
 
 # Add crontab file in the cron directory
-ADD crontab /etc/cron.d/laravel-cron
+ADD cron /etc/crontab
 
 # Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/laravel-cron
+RUN chmod 0644 /etc/crontab
 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
