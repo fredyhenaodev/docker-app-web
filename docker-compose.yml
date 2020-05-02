@@ -43,15 +43,6 @@ services:
     networks:
       - backend
 
-  ### CronTab ##############################################
-  crontab:
-    build: ./crontab
-    volumes:
-      - ${CRONTAB_LOG_PATH}:/var/log/
-      - ${CRONTAB_PATH}:/etc/
-    networks:
-      - backend
-
   ### PostgreSQL ###########################################
   postgres:
     build: ./postgres
