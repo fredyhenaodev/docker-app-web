@@ -97,6 +97,11 @@ POSTGRES_PASSWORD=secret
 POSTGRES_PORT=5432
 POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
 
+### CRONTAB ##############################################
+
+CRONTAB_LOG_PATH=./logs/crontab/
+CRONTAB_PATH=./crontab/jobs/
+
 ### CERTBOT ###############################################
 
 # CERTBOT_DOMAINS=siaa.api.io,siaa.io
