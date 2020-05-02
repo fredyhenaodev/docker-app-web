@@ -47,6 +47,7 @@ RUN apt-get update \
     php-memcached \
   && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
   && mkdir /run/php \
+  && apt-get -y install cron \
   && apt-get remove -y --purge software-properties-common \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -56,8 +57,17 @@ COPY php.ini /etc/php/7.4/fpm/php.ini
 COPY php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf
 COPY www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
+# Add crontab file in the cron directory
+ADD crontab /etc/cron.d/scheduler
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/scheduler
+
+# Execution the cron
+RUN crontab /etc/cron.d/scheduler
+
 # Expone el puerto 9000 para la comunicación entre contenedores
 EXPOSE 9000
 
 # Ejecuta el comando php-fpm7.2
-CMD ["php-fpm7.4"]
+CMD ["cron -f & php-fpm7.4"]
