@@ -1,1 +1,1 @@
-* * * * * sh -c '/usr/local/bin/php /var/www/html/artisan schedule:run >> /dev/null  2>&1'
+* * * * * sh -c 'php /var/www/apisiaa/artisan schedule:run >> /dev/null  2>&1'
