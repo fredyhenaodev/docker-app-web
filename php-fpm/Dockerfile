@@ -59,13 +59,13 @@ COPY www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./script.sh /
 
 # Add crontab file in the cron directory
-ADD crontab /etc/cron.d/scheduler
+#ADD crontab /etc/cron.d/scheduler
 
 # Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/scheduler
+#RUN chmod 0644 /etc/cron.d/scheduler
 
 # Execution the cron
-RUN crontab /etc/cron.d/scheduler
+#RUN crontab /etc/cron.d/scheduler
 
 # Expone el puerto 9000 para la comunicación entre contenedores
 EXPOSE 9000

@@ -89,6 +89,11 @@ NGINX_PHP_UPSTREAM_CONTAINER=php-fpm
 NGINX_PHP_UPSTREAM_PORT=9000
 NGINX_SSL_PATH=./nginx/ssl/
 
+### NODE ##################################################
+
+NODE_VERSION=8
+NODE_ENV=development
+
 ### POSTGRES ##############################################
 
 POSTGRES_DB=siaa

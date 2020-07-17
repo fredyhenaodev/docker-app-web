@@ -32,7 +32,7 @@ services:
     depends_on:
       - php-fpm
     networks:
-      - backend
+      - ${NETWORKS_NAME_DEV}
 
   ### PHP-FPM ##############################################
   php-fpm:
@@ -41,7 +41,25 @@ services:
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     networks:
-      - backend
+      - ${NETWORKS_NAME_DEV}
+
+    ### Node #################################################
+  node:
+    build:
+      context: ./node
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+    working_dir: ${APP_CODE_PATH_CONTAINER}/frontsiaa
+    volumes:
+      - ${DATA_PATH_HOST}/node:/src/
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+    ports:
+      - 80:3001
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    command: 'yarn start'
+    networks:
+      - ${NETWORKS_NAME_DEV}
 
   ### PostgreSQL ###########################################
   postgres:
@@ -56,7 +74,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     networks:
-      - backend
+      - ${NETWORKS_NAME_DEV}
 
 
 
